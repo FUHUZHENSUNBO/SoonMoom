@@ -1,6 +1,6 @@
 #pragma once
 #include "Core.h"
-
+#include "SoonMoom/Log.h"
 
 namespace SoonMoom
 {
