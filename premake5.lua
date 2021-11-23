@@ -11,6 +11,12 @@ workspace "SoonMoom"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir={}
+IncludeDir["GLFW"] = "SoonMoom/vendor/GLFW/include"
+
+include "SoonMoom/vendor/GLFW"
+
 project "SoonMoom"
 	location "SoonMoom"
 	kind"SharedLib"
@@ -32,8 +38,14 @@ project "SoonMoom"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
 	}
-
+	
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
+	}
 
 	filter "system:windows"
 		cppdialect "C++17"
