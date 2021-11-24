@@ -28,6 +28,8 @@ namespace SoonMoom {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
+
+
 	class WindowCloseEvent : public Event
 	{
 	public:
@@ -36,6 +38,8 @@ namespace SoonMoom {
 		EVENT_CLASS_TYPE(WindowClose)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
+
+
 
 	class AppTickEvent : public Event
 	{
@@ -46,6 +50,8 @@ namespace SoonMoom {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
+
+
 	class AppUpdateEvent : public Event
 	{
 	public:
@@ -54,6 +60,8 @@ namespace SoonMoom {
 		EVENT_CLASS_TYPE(AppUpdate)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
+
+
 
 	class AppRenderEvent : public Event
 	{

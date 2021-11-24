@@ -31,15 +31,18 @@ namespace SoonMoom {
 		EventCategoryMouseButton    = BIT(4)
 	};
 
-#define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::##type; }\
-								virtual EventType GetEventType() const override { return GetStaticType(); }\
+#define EVENT_CLASS_TYPE(type)  static  EventType   GetStaticType() { return EventType::##type; }\
+								virtual EventType   GetEventType() const override { return GetStaticType(); }\
 								virtual const char* GetName() const override { return #type; }
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
+
 	class SOONMOOM_API Event
 	{
 		friend class EventDispatcher;
+		friend class  Application;
+
 	public:
 		virtual ~Event() = default;
 		virtual EventType GetEventType() const = 0;
@@ -53,10 +56,6 @@ namespace SoonMoom {
 	protected:
 		bool m_Handled = false;
 	};
-
-
-
-
 
 	class SOONMOOM_API EventDispatcher
 	{

@@ -13,6 +13,7 @@ namespace SoonMoom {
 	{
 		SM_CORE_ERROR("GLFW Error! ({0}):{1}", error_code, description);
 	}
+	
 	Window* Window::Create(const WindowProps& props)
 	{
 		return new WindowsWindow(props);
@@ -30,6 +31,7 @@ namespace SoonMoom {
 
 	void WindowsWindow::Init(const WindowProps& props)
 	{
+		
 		m_Data.Title = props.Title;
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
@@ -45,12 +47,19 @@ namespace SoonMoom {
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+	
+
 		glfwMakeContextCurrent(m_Window);
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
 
 		//Set GLFW callbacks
+
+		/// <summary>
+		/// 屏幕尺寸回调
+		/// </summary>
+		/// <param name="props"></param>
 		glfwSetWindowSizeCallback(m_Window, 
 			[](GLFWwindow* window,int width,int height) 
 			{
@@ -62,6 +71,10 @@ namespace SoonMoom {
 			}
 		);
 
+		/// <summary>
+		/// 窗口关闭回调
+		/// </summary>
+		/// <param name="props"></param>
 		glfwSetWindowCloseCallback(m_Window, 
 			[](GLFWwindow* window) 
 			{
@@ -70,6 +83,10 @@ namespace SoonMoom {
 				data.EventCallback(event);
 			});
 
+		/// <summary>
+		/// 键盘按键回调
+		/// </summary>
+		/// <param name="props"></param>
 		glfwSetKeyCallback(m_Window, 
 			[](GLFWwindow* window,int key,int scancode,int action,int mods) 
 			{
@@ -105,8 +122,10 @@ namespace SoonMoom {
 			}
 		);
 
-
-
+		/// <summary>
+		/// 鼠标案件回调
+		/// </summary>
+		/// <param name="props"></param>
 		glfwSetMouseButtonCallback(m_Window,
 			[](GLFWwindow* window,int button,int action,int mods)
 			{
@@ -133,6 +152,10 @@ namespace SoonMoom {
 			}
 		);
 
+		/// <summary>
+		/// 鼠标滑轮滚动回调
+		/// </summary>
+		/// <param name="props"></param>
 		glfwSetScrollCallback(m_Window,
 			[](GLFWwindow* window, double xoffset, double yoffset)
 			{
@@ -142,6 +165,10 @@ namespace SoonMoom {
 			}
 		);
 
+		/// <summary>
+		/// 鼠标移动回调
+		/// </summary>
+		/// <param name="props"></param>
 		glfwSetCursorPosCallback(m_Window,
 			[](GLFWwindow* window, double xpos, double ypos)
 			{
