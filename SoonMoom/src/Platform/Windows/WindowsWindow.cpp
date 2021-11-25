@@ -1,9 +1,12 @@
 #include "smpch.h"
-#include "Platform/Windows/WindowsWindow.h"
+#include "WindowsWindow.h"
 #include "SoonMoom/Log.h"
 #include "SoonMoom/Events/ApplicationEvent.h"
 #include "SoonMoom/Events/MouseEvent.h"
 #include "SoonMoom/Events/KeyEvent.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
 
 
 namespace SoonMoom {
@@ -50,6 +53,9 @@ namespace SoonMoom {
 	
 
 		glfwMakeContextCurrent(m_Window);
+
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		SM_CORE_ASSERT(status, "Failed to initialize Glad !");
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -121,6 +127,17 @@ namespace SoonMoom {
 				}
 			}
 		);
+
+
+		glfwSetCharCallback(m_Window,
+			[](GLFWwindow* window, unsigned int codepoint)
+			{
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+				KeyTypedEvent event(codepoint);
+				data.EventCallback(event);
+			}
+		);
+
 
 		/// <summary>
 		/// 鼠标案件回调

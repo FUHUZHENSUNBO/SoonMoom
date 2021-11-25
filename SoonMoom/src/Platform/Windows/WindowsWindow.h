@@ -1,9 +1,11 @@
 #pragma once
 #include "SoonMoom/Core.h"
 #include "SoonMoom/Window.h"
-#include <GLFW/glfw3.h>
 
+
+	class GLFWwindow;
 namespace SoonMoom {
+
 
 	class WindowsWindow : public Window
 	{

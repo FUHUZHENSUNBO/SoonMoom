@@ -14,8 +14,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir={}
 IncludeDir["GLFW"] = "SoonMoom/vendor/GLFW/include"
+IncludeDir["Glad"] = "SoonMoom/vendor/Glad/include"
+IncludeDir["Imgui"] = "SoonMoom/vendor/imgui"
 
 include "SoonMoom/vendor/GLFW"
+include "SoonMoom/vendor/Glad"
+include "SoonMoom/vendor/imgui"
 
 project "SoonMoom"
 	location "SoonMoom"
@@ -38,13 +42,16 @@ project "SoonMoom"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.Imgui}"
 	}
 	
 	links
 	{
 		"GLFW",
-		"opengl32.lib"
+		"Glad",
+		"ImGui"
 	}
 
 	filter "system:windows"

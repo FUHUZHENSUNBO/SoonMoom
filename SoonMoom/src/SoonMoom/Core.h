@@ -1,5 +1,4 @@
 #pragma once
-
 #ifdef SM_PLATFORM_WINDOWS
 	#ifdef  SM_BUIILD_DLL
 		#define SOONMOOM_API __declspec(dllexport) 
@@ -9,6 +8,12 @@
 #else
 	#error SoonMoom only support Windows!
 #endif
+
+#ifdef SM_DEBUG
+#define SM_ENABLE_ASSERTS
+#endif // SM_DEBUG
+
+
 
 #ifdef SM_ENABLE_ASSERTS
     #define  SM_ASSERT(x,...){if(!(x)){SM_ERROR("Assertion Failed: {0}",__VA_ARGS__);__debugbreak();}}
@@ -20,3 +25,7 @@
 
 
 #define  BIT(x) (1<<x)
+
+
+
+

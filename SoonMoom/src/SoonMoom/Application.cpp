@@ -1,16 +1,30 @@
-#include "smpch.h"
+ #include "smpch.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 #include "Application.h"
-#include "GLFW/glfw3.h"
+
+
 
 namespace SoonMoom
 {
-#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
+#ifndef SM_BIND_EVENT_FN(fn)
+#define SM_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+#endif // !SM_BIND_EVENT_FN(fn)
+
+	 Application* Application::s_Instance = nullptr;
 
 
 	Application::Application()
 	{
+		SM_CORE_ASSERT(!s_Instance, "Application already exists!");
+		s_Instance = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());
-		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		m_Window->SetEventCallback(SM_BIND_EVENT_FN(Application::OnEvent));
+
+		unsigned int id;
+		glGenVertexArrays(1,&id);
+
+
 	}
 
 	Application::~Application()
@@ -21,7 +35,7 @@ namespace SoonMoom
 	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClosed));
+		dispatcher.Dispatch<WindowCloseEvent>(SM_BIND_EVENT_FN(Application::OnWindowClosed));
 		SM_CORE_TRACE("{0}",e);
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
@@ -35,10 +49,12 @@ namespace SoonMoom
 	void Application::PushLayer(Layer* layer)
 	{
 		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 	void Application::PushOverlay(Layer* overlay)
 	{
 		m_LayerStack.PushOverlay(overlay);
+		overlay->OnAttach();
 	}
 
 	bool Application::OnWindowClosed(WindowCloseEvent& e)
