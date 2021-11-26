@@ -152,7 +152,7 @@ namespace SoonMoom
 
 	bool ImGuiLayer::OnKeyTypedEvent(KeyTypedEvent& event)
 	{
-		ImGuiIO& io = ImGui::GetIO();
+		ImGuiIO& io = ImGui::GetIO();    
 		int keycode = event.GetKeyCode();
 		if (keycode > 0 && keycode < 0x10000)
 		{

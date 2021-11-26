@@ -16,6 +16,7 @@ IncludeDir={}
 IncludeDir["GLFW"] = "SoonMoom/vendor/GLFW/include"
 IncludeDir["Glad"] = "SoonMoom/vendor/Glad/include"
 IncludeDir["Imgui"] = "SoonMoom/vendor/imgui"
+IncludeDir["glm"] = "SoonMoom/vendor/glm"
 
 include "SoonMoom/vendor/GLFW"
 include "SoonMoom/vendor/Glad"
@@ -34,6 +35,8 @@ project "SoonMoom"
 
 	files
 	{
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"
 	}
@@ -44,6 +47,7 @@ project "SoonMoom"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
+		"%{IncludeDir.glm}",
 		"%{IncludeDir.Imgui}"
 	}
 	
@@ -98,6 +102,9 @@ project "Sandbox"
 	targetdir ("bin/"..outputdir.."/%{prj.name}")
 	objdir ("bin-int/"..outputdir.."/%{prj.name}")
 
+
+
+
 	files
 	{
 		"%{prj.name}/src/**.h",
@@ -107,6 +114,7 @@ project "Sandbox"
 	includedirs
 	{
 		"SoonMoom/src",
+		"SoonMoom/vendor/glm",
 		"SoonMoom/vendor/spdlog/include"
 
 	} 

@@ -9,6 +9,10 @@
 	#error SoonMoom only support Windows!
 #endif
 
+#ifdef SM_PLATFORM_WINDOWS
+	#define SM_WINDOWS_GLFW_INPUT_CODE 
+#endif
+
 #ifdef SM_DEBUG
 #define SM_ENABLE_ASSERTS
 #endif // SM_DEBUG
