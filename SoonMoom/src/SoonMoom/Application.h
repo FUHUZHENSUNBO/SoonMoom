@@ -2,14 +2,16 @@
 #include "Core.h"
 #include "Log.h"
 #include "Window.h"
+
 #include "SoonMoom/LayerStack.h"
 #include "SoonMoom/Events/Event.h"
 #include "SoonMoom/Events/ApplicationEvent.h"
+#include "SoonMoom/ImGui/ImGuiLayer.h"
 
 namespace SoonMoom
 {
 
-	class SOONMOOM_API Application
+	class  Application
 	{
 	public:
 		Application();
@@ -26,6 +28,7 @@ namespace SoonMoom
 	private:
 		bool OnWindowClosed(WindowCloseEvent& e);
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImguiLayer = nullptr;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 	private:

@@ -4,7 +4,7 @@
 
 namespace SoonMoom
 {
-	class SOONMOOM_API WindowsInput:public Input
+	class  WindowsInput:public Input
 	{
 	protected:
 		virtual bool IsKeyPressedImpl(int keyCode)override;

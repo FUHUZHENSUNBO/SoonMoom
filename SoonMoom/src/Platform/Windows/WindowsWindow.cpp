@@ -5,7 +5,7 @@
 #include "SoonMoom/Events/MouseEvent.h"
 #include "SoonMoom/Events/KeyEvent.h"
 #include <glad/glad.h>
-#include <GLFW/glfw3.h>
+
 
 
 
@@ -39,7 +39,12 @@ namespace SoonMoom {
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
 
+	
+
 		SM_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
+
+		//m_Context = new OpenGLContext();
+
 
 		if (!s_GLFWInitiallized)
 		{
@@ -51,6 +56,7 @@ namespace SoonMoom {
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 	
+		//m_Context->Init();
 
 		glfwMakeContextCurrent(m_Window);
 
@@ -205,6 +211,7 @@ namespace SoonMoom {
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
+		//m_Context->SwapBuffers();
 		glfwSwapBuffers(m_Window);
 	}
 

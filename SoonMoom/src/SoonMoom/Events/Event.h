@@ -38,7 +38,7 @@ namespace SoonMoom {
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
 
-	class SOONMOOM_API Event
+	class  Event
 	{
 		friend class EventDispatcher;
 		friend class  Application;
@@ -53,11 +53,12 @@ namespace SoonMoom {
 		{
 			return GetCategoryFlags() & category;
 		}
-	protected:
 		bool m_Handled = false;
+
+
 	};
 
-	class SOONMOOM_API EventDispatcher
+	class  EventDispatcher
 	{
 	public:
 		template<typename T>

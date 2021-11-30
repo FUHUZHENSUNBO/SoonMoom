@@ -23,7 +23,7 @@ namespace SoonMoom {
 	};
 
 	// Interface representing a desktop system based Window
-	class SOONMOOM_API Window
+	class  Window
 	{
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;

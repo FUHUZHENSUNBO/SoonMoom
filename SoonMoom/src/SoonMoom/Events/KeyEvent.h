@@ -8,7 +8,7 @@
 namespace SoonMoom {
 	class  KeyCode;
 
-	class SOONMOOM_API KeyEvent : public Event
+	class  KeyEvent : public Event
 	{
 	public:
 		inline int GetKeyCode() const { return m_KeyCode; }
@@ -21,7 +21,7 @@ namespace SoonMoom {
 		int m_KeyCode;
 	};
 
-	class SOONMOOM_API KeyPressedEvent : public KeyEvent
+	class  KeyPressedEvent : public KeyEvent
 	{
 	public:
 		KeyPressedEvent(const int keycode, const int repeatCount)
@@ -41,7 +41,7 @@ namespace SoonMoom {
 		int m_RepeatCount;
 	};
 
-	class SOONMOOM_API KeyReleasedEvent : public KeyEvent
+	class  KeyReleasedEvent : public KeyEvent
 	{
 	public:
 		KeyReleasedEvent(const int keycode)
@@ -57,7 +57,7 @@ namespace SoonMoom {
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
 
-	class SOONMOOM_API KeyTypedEvent : public KeyEvent
+	class  KeyTypedEvent : public KeyEvent
 	{
 	public:
 		KeyTypedEvent(const int keycode)

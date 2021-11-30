@@ -8,9 +8,7 @@
 
 namespace SoonMoom
 {
-#ifndef SM_BIND_EVENT_FN(fn)
-#define SM_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
-#endif // !SM_BIND_EVENT_FN(fn)
+
 
 	 Application* Application::s_Instance = nullptr;
 
@@ -21,11 +19,8 @@ namespace SoonMoom
 		s_Instance = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(SM_BIND_EVENT_FN(Application::OnEvent));
-
-		unsigned int id;
-		glGenVertexArrays(1,&id);
-
-
+		m_ImguiLayer = new ImGuiLayer();
+		PushOverlay(m_ImguiLayer);
 	}
 
 	Application::~Application()
@@ -77,9 +72,13 @@ namespace SoonMoom
 			{
 				layer->OnUpdate();
 			}
-			//auto [x, y] = Input::GetMousePosition();
-			//SM_CORE_TRACE("{0},{1}", x, y);
 
+			m_ImguiLayer->Begin();
+			for (Layer* layer : m_LayerStack)
+			{
+				layer->OnImGuiRender();
+			}
+			m_ImguiLayer->End();
 
 			m_Window->OnUpdate();
 		}

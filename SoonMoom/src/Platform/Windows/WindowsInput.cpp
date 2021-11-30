@@ -3,6 +3,7 @@
 #include "SoonMoom/Application.h"
 #include <GLFW/glfw3.h>
 #include "SoonMoom/Log.h"
+#include "glad/glad.h"
 namespace SoonMoom
 {
 

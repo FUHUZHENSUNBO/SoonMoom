@@ -1,9 +1,9 @@
 #pragma once
+#include <GLFW/glfw3.h>
 #include "SoonMoom/Core.h"
 #include "SoonMoom/Window.h"
 
 
-class GLFWwindow;
 
 namespace SoonMoom {
 
@@ -29,8 +29,8 @@ namespace SoonMoom {
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
 	private:
-		GLFWwindow* m_Window;
-		
+		GLFWwindow* m_Window = nullptr;
+		//GraphicsContext* m_Context;
 
 		struct WindowData
 		{

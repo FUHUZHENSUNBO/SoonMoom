@@ -5,7 +5,7 @@
 
 namespace  SoonMoom
 {
-	class SOONMOOM_API Input
+	class  Input
 	{
 	public:
 		inline static bool IsKeyPressed(int Keycode) { return  s_Instance->IsKeyPressedImpl(Keycode); }
