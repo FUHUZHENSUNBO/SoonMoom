@@ -58,6 +58,7 @@
     <IntDir>..\bin-int\Debug-windows-x86_64\SoonMoom\</IntDir>
     <TargetName>SoonMoom</TargetName>
     <TargetExt>.lib</TargetExt>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\bin\Release-windows-x86_64\SoonMoom\</OutDir>
@@ -140,6 +141,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\SoonMoom.h" />
@@ -157,6 +159,12 @@
     <ClInclude Include="src\SoonMoom\LayerStack.h" />
     <ClInclude Include="src\SoonMoom\Log.h" />
     <ClInclude Include="src\SoonMoom\MouseButtonCodes.h" />
+    <ClInclude Include="src\SoonMoom\Renderer\Buffer.h" />
+    <ClInclude Include="src\SoonMoom\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\SoonMoom\Renderer\OpenGLBuffer.h" />
+    <ClInclude Include="src\SoonMoom\Renderer\Renderer.h" />
+    <ClInclude Include="src\SoonMoom\Renderer\Shader.h" />
+    <ClInclude Include="src\SoonMoom\TempCode.h" />
     <ClInclude Include="src\SoonMoom\Window.h" />
     <ClInclude Include="src\smpch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
@@ -576,6 +584,7 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\SoonMoom\Application.cpp" />
@@ -587,6 +596,11 @@
     <ClCompile Include="src\smpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\SoonMoom\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\SoonMoom\Renderer\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\SoonMoom\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\SoonMoom\Renderer\Shader.cpp" />
+    <ClCompile Include="src\SoonMoom\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">

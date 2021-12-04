@@ -2,7 +2,7 @@
 #include <GLFW/glfw3.h>
 #include "SoonMoom/Core.h"
 #include "SoonMoom/Window.h"
-
+#include "SoonMoom/Renderer/GraphicsContext.h"
 
 
 namespace SoonMoom {
@@ -30,7 +30,7 @@ namespace SoonMoom {
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window = nullptr;
-		//GraphicsContext* m_Context;
+		GraphicsContext* m_Context = nullptr;
 
 		struct WindowData
 		{

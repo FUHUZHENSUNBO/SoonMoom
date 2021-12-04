@@ -8,12 +8,14 @@
 #include <sstream>
 
 
-#include <string>
+#include <String>
 #include <vector>
 #include <list>
 #include <stack>
+#include <map>
 #include <unordered_map>
 #include <unordered_set>
+#include <initializer_list>
 
 #include "SoonMoom/Log.h"
 
