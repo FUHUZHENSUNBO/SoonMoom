@@ -4,16 +4,10 @@
 #include "Application.h"
 #include "SoonMoom/Input.h"
 #include "glm/glm.hpp"
-#include "SoonMoom/Renderer/Buffer.h"
-
 
 namespace SoonMoom
 {
-
-
 	 Application* Application::s_Instance = nullptr;
-
-
 
 	Application::Application()
 	{
@@ -26,10 +20,6 @@ namespace SoonMoom
 		m_ImguiLayer = new ImGuiLayer();
 		PushOverlay(m_ImguiLayer);
 
-		////Vertex Array 
-		glGenVertexArrays(1, &m_vertextArray);
-		glBindVertexArray(m_vertextArray);
-
 
 		float vertices[3 * 7] = {
 		   -0.5f , -0.5f, 0.0f,1.0,0.0,1.0,1.0,
@@ -37,40 +27,34 @@ namespace SoonMoom
 			0.0f ,  0.5f, 0.0f,1.0,0.0,1.0,1.0
 		};
 		
-
 		uint32_t indices[3] = { 0,1,2 };
 
+
+
+		//Vertex Array 
+		m_VertexArray.reset(VertexArray::Creat());
+		m_VertexArray->Bind();
+
+
 		//Vertex Buffer
-		
-		m_vertexBuffer.reset( VertexBuffer::Create(vertices, sizeof(vertices)));
+		m_VertexBuffer.reset( VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		//Index Buffer
-		m_indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices)/sizeof(uint32_t)));
+		m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices)/sizeof(uint32_t)));
 
+		//set layout for vertexBuffer
 		{
 			BufferLayout layout =
 			{
 				{"a_Position",ShaderDataType::Float3},
 				{"a_Color",ShaderDataType::Float4}
 			};
-			m_vertexBuffer->SetLayout(layout);
+			m_VertexBuffer->SetLayout(layout);
 
 		}
-		const auto& layout = m_vertexBuffer->GetLayout();
-		uint32_t index = 0;
-		for (const auto& element: layout)
-		{
-			glEnableVertexAttribArray(index);
-			glVertexAttribPointer(
-				index, 
-				element.GetComponentCount(),
-				element.SwitchToGLType(),
-				element.m_Normalized ? GL_TRUE:GL_FALSE,
-				layout.GetStride(), 
-				(const void*)element.m_Offset
-			);
-			++index;
-		}
+		m_VertexArray->AddVertexBuffer(m_VertexBuffer);
+		m_VertexArray->SetIndexBuffer(m_IndexBuffer);
+		
 
 
 		////glEnableVertexAttribArray(0);
@@ -154,16 +138,13 @@ namespace SoonMoom
 		//glfwSetWindowSize(static_cast<GLFWwindow*>(m_Window->GetNativeWindow()), 780, 500);
 		while (m_Running)
 		{
-			
-			glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+			glClearColor(0.0f, 0.1f, 0.1f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
-			glBindVertexArray(m_vertextArray);
 
-			
 			m_Shader->Bind();
-			m_vertexBuffer->Bind();
-			m_indexBuffer->Bind();
-			glDrawElements(GL_TRIANGLES, m_indexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
+			m_VertexArray->Bind();
+
+			glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 
 			for (Layer* layer :m_LayerStack)

@@ -162,8 +162,10 @@
     <ClInclude Include="src\SoonMoom\Renderer\Buffer.h" />
     <ClInclude Include="src\SoonMoom\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\SoonMoom\Renderer\OpenGLBuffer.h" />
+    <ClInclude Include="src\SoonMoom\Renderer\OpenGLVertexArray.h" />
     <ClInclude Include="src\SoonMoom\Renderer\Renderer.h" />
     <ClInclude Include="src\SoonMoom\Renderer\Shader.h" />
+    <ClInclude Include="src\SoonMoom\Renderer\VertexArray.h" />
     <ClInclude Include="src\SoonMoom\TempCode.h" />
     <ClInclude Include="src\SoonMoom\Window.h" />
     <ClInclude Include="src\smpch.h" />
@@ -598,8 +600,10 @@
     </ClCompile>
     <ClCompile Include="src\SoonMoom\Renderer\Buffer.cpp" />
     <ClCompile Include="src\SoonMoom\Renderer\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\SoonMoom\Renderer\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\SoonMoom\Renderer\Renderer.cpp" />
     <ClCompile Include="src\SoonMoom\Renderer\Shader.cpp" />
+    <ClCompile Include="src\SoonMoom\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\SoonMoom\Window.cpp" />
   </ItemGroup>
   <ItemGroup>

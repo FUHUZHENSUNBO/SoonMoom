@@ -1351,6 +1351,8 @@
     <ClInclude Include="src\SoonMoom\Renderer\OpenGLBuffer.h" />
     <ClInclude Include="src\SoonMoom\Renderer\Renderer.h" />
     <ClInclude Include="src\SoonMoom\TempCode.h" />
+    <ClInclude Include="src\SoonMoom\Renderer\VertexArray.h" />
+    <ClInclude Include="src\SoonMoom\Renderer\OpenGLVertexArray.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
@@ -1386,5 +1388,7 @@
     <ClCompile Include="src\SoonMoom\Renderer\OpenGLBuffer.cpp" />
     <ClCompile Include="src\SoonMoom\Renderer\Renderer.cpp" />
     <ClCompile Include="src\SoonMoom\Window.cpp" />
+    <ClCompile Include="src\SoonMoom\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\SoonMoom\Renderer\OpenGLVertexArray.cpp" />
   </ItemGroup>
 </Project>
