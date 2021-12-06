@@ -7,15 +7,15 @@ namespace SoonMoom
 {
 	SoonMoom::VertexArray* VertexArray::Creat()
 	{
-		switch (Renderer::GetRendererAPI())
+		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None:
+		case RendererAPI::API::None:
 		{
 			SM_CORE_ASSERT(false, "RendererAPI : None is currently not supported !");
 			SM_CORE_ERROR("RendererAPI : None is currently not supported !");
 			return nullptr;
 		}
-		case RendererAPI::OpenGL:
+		case RendererAPI::API::OpenGL:
 		{
 			SM_CORE_INFO("RendererAPI : OpenGL !");
 			return new OpenGLVertexArray();

@@ -13,12 +13,14 @@ namespace SoonMoom
 
 	OpenGLVertexArray::~OpenGLVertexArray()
 	{
-
+		glDeleteVertexArrays(1, &m_RendererID);
 	}
 
 	void OpenGLVertexArray::Bind() const
 	{
 		glBindVertexArray(m_RendererID);
+
+		m_IndexBuffer->Bind();
 	}
 
 	void OpenGLVertexArray::UnBind() const
@@ -26,7 +28,7 @@ namespace SoonMoom
 		glBindVertexArray(0);
 	}
 
-	void OpenGLVertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer) const
+	void OpenGLVertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer)
 	{
 		SM_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().empty(), "vertexBuffer Layout is empty !");
 
@@ -48,14 +50,24 @@ namespace SoonMoom
 			);
 			++index;
 		}
-
+		m_VertexBufferBox.push_back(vertexBuffer);
 	}
 
 	void OpenGLVertexArray::SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer)
 	{
 		glBindVertexArray(m_RendererID);
 		indexBuffer->Bind();
-		m_IndexBufferBox = indexBuffer;
+		m_IndexBuffer = indexBuffer;
+	}
+
+	const std::vector<std::shared_ptr<SoonMoom::VertexBuffer>>& OpenGLVertexArray::GetVertexBuffers() const
+	{
+		return m_VertexBufferBox;
+	}
+
+	const std::shared_ptr<SoonMoom::IndexBuffer>& OpenGLVertexArray::GetIndexBuffers() const
+	{
+		return m_IndexBuffer;
 	}
 
 }
